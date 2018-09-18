@@ -1,0 +1,12 @@
+sudo: required
+language: java
+jdk:
+  - oraclejdk8
+branches:
+ only:
+  - master
+install: mvn clean install -DskipTests=true
+script: mvn test -P acceptance
+notifications:
+  email:
+  - pablo.gonzalez.granados@gmail.com
