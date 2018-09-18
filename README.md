@@ -17,8 +17,78 @@ On the other hand we encourage you to develop your own datasets. You could place
 
 1. [Test_definition](https://github.com/pjgg/indietxt/blob/master/src/acceptance-test/resources/features/ExerciseAcceptance.feature "Test definition")
 2. [mainAcceptanceClass](https://github.com/pjgg/indietxt/blob/master/src/acceptance-test/java/RunCukesTest.java "Main acceptance test class")
-3. [serviceMainClass](https://github.com/pjgg/indietxt/blob/master/src/main/java/org/indietxt/service/impl/StockManagerReferenceImpl.java "Service main class")
-4. [StorageLayer](https://github.com/pjgg/indietxt/blob/master/src/main/java/org/indietxt/storage/AbstractDAO.java "Storage main class")
+3. [UnitTestFolder](https://github.com/pjgg/indietxt/blob/master/src/test/java/org/indietxt "Main unitTest folder")
+4. [serviceMainClass](https://github.com/pjgg/indietxt/blob/master/src/main/java/org/indietxt/service/impl/StockManagerReferenceImpl.java "Service main class")
+5. [StorageLayer](https://github.com/pjgg/indietxt/blob/master/src/main/java/org/indietxt/storage/AbstractDAO.java "Storage main class")
+
+
+```
+
+.
+├── README.md
+├── logo.png
+├── pom.xml
+├── src
+│   ├── acceptance-test
+│   │   ├── java
+│   │   │   ├── RunCukesTest.java
+│   │   │   └── org
+│   │   │       └── indietxt
+│   │   │           └── acceptanceTest
+│   │   │               ├── CalculateStockIT.java
+│   │   │               ├── CommonsHooks.java
+│   │   │               └── utils
+│   │   │                   ├── ClassPattern.java
+│   │   │                   ├── CsvFileReader.java
+│   │   │                   ├── Pattern.java
+│   │   │                   └── PatternMatching.java
+│   │   └── resources
+│   │       ├── basicSolution.csv
+│   │       ├── features
+│   │       │   └── ExerciseAcceptance.feature
+│   │       ├── loadProductSizeCaseBasic.csv
+│   │       ├── loadProductSizeCaseMessy.csv
+│   │       ├── loadProductSizeCaseSizeSystem.csv
+│   │       ├── loadProductSizeCaseSizeSystemComplex.csv
+│   │       ├── loadProductSizeCaseSizeSystemReverse.csv
+│   │       ├── loadStockEntryCaseBasic.csv
+│   │       ├── loadStockEntryCaseMessy.csv
+│   │       ├── loadStockEntryCaseSizeSystem.csv
+│   │       ├── loadStockEntryCaseSizeSystemComplex.csv
+│   │       ├── sizeSystemSolution.csv
+│   │       ├── sizeSystemSolutionComplex.csv
+│   │       └── sizeSystemSolutionMessy.csv
+│   ├── main
+│   │   └── java
+│   │       └── org
+│   │           └── indietxt
+│   │               ├── model
+│   │               │   ├── ProductSize.java
+│   │               │   └── StockEntry.java
+│   │               ├── service
+│   │               │   ├── StockManager.java
+│   │               │   ├── StockManagerServiceLocator.java
+│   │               │   └── impl
+│   │               │       └── StockManagerReferenceImpl.java
+│   │               └── storage
+│   │                   ├── AbstractDAO.java
+│   │                   ├── ProductSizeDAO.java
+│   │                   ├── ProductSizePredicates.java
+│   │                   ├── StockEntryDAO.java
+│   │                   └── StockEntryPredicates.java
+│   └── test
+│       └── java
+│           └── org
+│               └── indietxt
+│                   ├── service
+│                   │   ├── ServiceLocatorTest.java
+│                   │   └── StockManagerReferenceImplTest.java
+│                   └── storage
+│                       ├── ProductSizeDaoTest.java
+│                       └── StockEntryDaoTest.java
+└── suply-chain.iml
+```
+
 
 ## Implementation considerations
 
