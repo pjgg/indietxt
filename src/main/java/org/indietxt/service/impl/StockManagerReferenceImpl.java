@@ -30,9 +30,11 @@ public class StockManagerReferenceImpl implements StockManager {
 
 					StockEntry stockEntry = stockEntryDAO.filterEntities(StockEntryPredicates.byId(p.getId())).findAny().get();
 					List<ProductSize> tmp = productSizeDAO.filterEntities(ProductSizePredicates.byEquivalentLogic(perm, stockEntry.getQty(), stockEntryDAO)).collect(Collectors.toList());
-					List<Integer> ids = tmp.stream().map(ProductSize::getId).collect(Collectors.toList());
-					productSizeDAO.removeEntities(ProductSizePredicates.byIds(ids.toArray(new Integer[ids.size()])));
-					productSizeDAO.addEntity(p);
+					if (!tmp.isEmpty()){
+						List<Integer> ids = tmp.stream().map(ProductSize::getId).collect(Collectors.toList());
+						productSizeDAO.removeEntities(ProductSizePredicates.byIds(ids.toArray(new Integer[ids.size()])));
+						productSizeDAO.addEntity(p);
+					}
 				}
 
 		});

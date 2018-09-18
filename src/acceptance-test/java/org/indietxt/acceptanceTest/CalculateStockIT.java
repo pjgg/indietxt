@@ -27,13 +27,13 @@ public class CalculateStockIT {
 	private List<StockEntry> result;
 
 	@Given("^a productSize csv \"([^\"]*)\" and a stock entry csv \"([^\"]*)\" with a \"([^\"]*)\" stockManager$")
-	public void a_productSize_csv_and_a_stock_entry_csv_with_a_stockManager(String productSizeFileName, String stockEntruFileName, String algorithm) throws Throwable {
+	public void a_productSize_csv_and_a_stock_entry_csv_with_a_stockManager(String productSizeFileName, String stockEntryFileName, String algorithm) throws Throwable {
 		CsvFileReader<ProductSize> csvReader = new CsvFileReader();
 		File productSizeCsv = new File(classLoader.getResource(productSizeFileName).getFile());
 		List<ProductSize> productSizeList = csvReader.read(productSizeCsv, new ProductSize(0,0, "desc"), ProductSize.class);
 
 		CsvFileReader<StockEntry> csvStockReader = new CsvFileReader();
-		File stockEntryCsv = new File(classLoader.getResource(stockEntruFileName).getFile());
+		File stockEntryCsv = new File(classLoader.getResource(stockEntryFileName).getFile());
 		List<StockEntry> stockEntryList = csvStockReader.read(stockEntryCsv, new StockEntry(0,0), StockEntry.class);
 
 		switch(algorithm) {

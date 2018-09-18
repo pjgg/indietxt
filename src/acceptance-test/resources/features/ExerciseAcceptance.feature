@@ -12,9 +12,20 @@ Feature: as an indieTxt manager I would like to calculate the stock
     When when I request to retrieve a stock
     Then check that the result much with the expected solution "sizeSystemSolution.csv"
 
-
   @CleanData
   Scenario: calculate stock with same sizeSystem and equivalent logic - complex example
     Given a productSize csv "loadProductSizeCaseSizeSystemComplex.csv" and a stock entry csv "loadStockEntryCaseSizeSystemComplex.csv" with a "ReferenceImpl" stockManager
     When when I request to retrieve a stock
-    Then check that the result much with the expected solution "sizeSystemSolutionComplex.csv"
+   Then check that the result much with the expected solution "sizeSystemSolutionComplex.csv"
+
+  @CleanData
+  Scenario: calculate stock with same sizeSystem and equivalent logic - reverse example
+    Given a productSize csv "loadProductSizeCaseSizeSystemReverse.csv" and a stock entry csv "loadStockEntryCaseSizeSystem.csv" with a "ReferenceImpl" stockManager
+    When when I request to retrieve a stock
+    Then check that the result much with the expected solution "sizeSystemSolution.csv"
+
+  @CleanData
+  Scenario: calculate stock with same sizeSystem and equivalent logic - messy example
+    Given a productSize csv "loadProductSizeCaseMessy.csv" and a stock entry csv "loadStockEntryCaseMessy.csv" with a "ReferenceImpl" stockManager
+    When when I request to retrieve a stock
+    Then check that the result much with the expected solution "sizeSystemSolutionMessy.csv"

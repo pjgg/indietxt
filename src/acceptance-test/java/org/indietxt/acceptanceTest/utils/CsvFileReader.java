@@ -51,8 +51,8 @@ public class CsvFileReader<E> {
 				if (tokens.length > 0) {
 
 					PatternMatching patternMatching = new PatternMatching(
-							ClassPattern.inCaseOf(ProductSize.class, airportCsvRecord -> new ProductSize(Integer.parseInt(tokens[PRODUCT_SIZE_ID]), Integer.parseInt(tokens[PRODUCT_SIZE_SYSTEM]),tokens[PRODUCT_SIZE_DESCRIPTION])),
-							ClassPattern.inCaseOf(StockEntry.class, flightCsvRecord -> new StockEntry(Integer.parseInt(tokens[STOCK_ENTRY_ID]), Integer.parseInt(tokens[STOCK_ENTRY_QUANTITY])))
+							ClassPattern.inCaseOf(ProductSize.class, productSizeRecords -> new ProductSize(Integer.parseInt(tokens[PRODUCT_SIZE_ID]), Integer.parseInt(tokens[PRODUCT_SIZE_SYSTEM]),tokens[PRODUCT_SIZE_DESCRIPTION])),
+							ClassPattern.inCaseOf(StockEntry.class, stockRecords -> new StockEntry(Integer.parseInt(tokens[STOCK_ENTRY_ID]), Integer.parseInt(tokens[STOCK_ENTRY_QUANTITY])))
 					);
 
 					entities.add(type.cast(patternMatching.matchFor(fakeInstanceClass)));
