@@ -7,6 +7,11 @@
 
   There are equivalent sizes, which are those whose sizing system contains the same numbers, although in different positions. For the equivalent sizes one must select the one with the highest stock, discarding their equivalences. The objective is to show those product sizes that have Stock.
 
+## Data constraint and new datasets
+
+We assume that all product sizes doesn't start by 0. For example 001 will be not a valid inbound data.
+On the other hand we encourage you to develop your own datasets. You could place your own CSV on this [folder](https://github.com/pjgg/indietxt/blob/master/src/acceptance-test/resources). You could copy/paste a gherkins [test case definition](https://github.com/pjgg/indietxt/blob/master/src/acceptance-test/resources/features/ExerciseAcceptance.feature "Test definition") replacing the existing CSV filenames by your own ones. In order to run the acceptance test you could run [mainAcceptanceClass](https://github.com/pjgg/indietxt/blob/master/src/acceptance-test/java/RunCukesTest.java "Main acceptance test class") or execute `mvn test -P acceptance`
+.
 
 ### Index 
 
@@ -32,3 +37,4 @@ The goal is to provide us with a full understanding of your coding style and ski
 * readable and well-structured code
 * design and domain modelling
 * quality of tests
+
