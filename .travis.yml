@@ -7,6 +7,8 @@ branches:
   - master
 install: mvn clean install -DskipTests=true
 script: mvn test -P acceptance
+after_success:
+  - mvn cobertura:cobertura coveralls:report -DrepoToken=$repoToken -DtravisJobId=$TRAVIS_JOB_ID
 notifications:
   email:
   - pablo.gonzalez.granados@gmail.com

@@ -1,7 +1,7 @@
 # indietxt POC
 
 
-![travicBuild](https://travis-ci.org/pjgg/indietxt.svg?branch=master "Click in order to go to travis build")
+![travicBuild](https://travis-ci.org/pjgg/indietxt.svg?branch=master "build status")
 <img align="right" src="https://github.com/pjgg/indietxt/blob/master/logo.png">
 
   Exiten tallas equivalentes, que son aquellas cuyo sistema de tallaje contienen los mismo números, aunque en distintas posiciones
