@@ -11,10 +11,18 @@ import org.indietxt.storage.ProductSizePredicates;
 import org.indietxt.storage.StockEntryDAO;
 import org.indietxt.storage.StockEntryPredicates;
 
+import static org.indietxt.storage.StockEntryPredicates.byId;
+import static org.indietxt.storage.StockEntryPredicates.alwaysTrue;
+
 public class StockManagerReferenceImpl implements StockManager {
 
-	protected ProductSizeDAO productSizeDAO = new ProductSizeDAO();
-	protected StockEntryDAO stockEntryDAO = new StockEntryDAO();
+	protected ProductSizeDAO productSizeDAO;
+	protected StockEntryDAO stockEntryDAO;
+
+	public StockManagerReferenceImpl(ProductSizeDAO productSizeDAO, StockEntryDAO stockEntryDAO) {
+		this.productSizeDAO = productSizeDAO;
+		this.stockEntryDAO = stockEntryDAO;
+	}
 
 	@Override
 	public void loadItems(List<ProductSize> productSizes, List<StockEntry> stockSizes) {
@@ -36,7 +44,6 @@ public class StockManagerReferenceImpl implements StockManager {
 						productSizeDAO.addEntity(p);
 					}
 				}
-
 		});
 	}
 

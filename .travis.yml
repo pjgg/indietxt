@@ -5,7 +5,7 @@ jdk:
 branches:
  only:
   - master
-install: mvn clean install -DskipTests=true
+install: mvn clean install
 script: mvn test -P acceptance
 after_success:
   - mvn cobertura:cobertura coveralls:report -DrepoToken=$repoToken -DtravisJobId=$TRAVIS_JOB_ID
