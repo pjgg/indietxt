@@ -1,5 +1,6 @@
 package org.indietxt.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,19 +32,23 @@ public interface StockManager {
 		return(Arrays.equals(c1,c2));
 	}
 
-	default int[] permutation(int n) {
-		int[] a = new int[n];
+	default List<String> getPermutations(String input) {
 
-		for (int i = 0; i < n; i++)
-			a[i] = i;
+		List strList = new ArrayList<>();
+		permutations("", input, strList);
+		return strList;
+	}
 
-		for (int i = 0; i < n; i++) {
-			int r = (int) (Math.random() * (i+1));     // int between 0 and i
-			int swap = a[r];
-			a[r] = a[i];
-			a[i] = swap;
+	default void permutations(String consChars, String input, List list) {
+
+		if(input.isEmpty()) {
+			list.add(consChars + input);
+			return;
 		}
 
-		return a;
+		for(int i = 0; i < input.length(); i++) {
+			permutations(consChars + input.charAt(i),
+					input.substring(0, i)+input.substring(i+1), list);
+		}
 	}
 }

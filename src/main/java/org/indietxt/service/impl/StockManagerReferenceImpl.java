@@ -1,7 +1,5 @@
 package org.indietxt.service.impl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,25 +18,23 @@ public class StockManagerReferenceImpl implements StockManager {
 
 	@Override
 	public void loadItems(List<ProductSize> productSizes, List<StockEntry> stockSizes) {
+
 		stockSizes.forEach(p -> stockEntryDAO.addEntity(p));
 		productSizes.forEach(p -> {
-			int perm[] = permutation(p.getSizeSystem());
-			if (!productSizeDAO.existEntities(ProductSizePredicates.equivalentLogic(perm))){
-				productSizeDAO.addEntity(p);
-			}else{
-				int indexOfSizeSystem = Arrays.asList(perm).indexOf(p.getSizeSystem());
-				int sizeSytem = perm[indexOfSizeSystem];
-				productSizeDAO.filterEntities(ProductSizePredicates.bySizeSystem(sizeSytem)).forEach(sizeSystemProd -> {
-					List<StockEntry> equivalentStock = stockEntryDAO.filterEntities(StockEntryPredicates.byId(sizeSystemProd.getId())).collect(Collectors.toList());
-					List<StockEntry> originalProductStock = stockEntryDAO.filterEntities(StockEntryPredicates.byId(p.getId())).collect(Collectors.toList());
+			List<String> perm = getPermutations(Integer.toString(p.getSizeSystem()));
+				if (!productSizeDAO.existEntities(ProductSizePredicates.equivalentLogic(perm))) {
+					productSizeDAO.addEntity(p);
+				} else {
+					int indexOfSizeSystem = perm.indexOf(Integer.toString(p.getSizeSystem()));
+					int sizeSytem = Integer.valueOf(perm.get(indexOfSizeSystem));
 
-					if(originalProductStock.get(0).getQty()>equivalentStock.get(0).getQty()){
-						productSizeDAO.addEntity(p);
-					}else{
-						productSizeDAO.addEntity(sizeSystemProd);
-					}
-				});
-			}
+					StockEntry stockEntry = stockEntryDAO.filterEntities(StockEntryPredicates.byId(p.getId())).findAny().get();
+					List<ProductSize> tmp = productSizeDAO.filterEntities(ProductSizePredicates.byEquivalentLogic(perm, stockEntry.getQty(), stockEntryDAO)).collect(Collectors.toList());
+					List<Integer> ids = tmp.stream().map(ProductSize::getId).collect(Collectors.toList());
+					productSizeDAO.removeEntities(ProductSizePredicates.byIds(ids.toArray(new Integer[ids.size()])));
+					productSizeDAO.addEntity(p);
+				}
+
 		});
 	}
 

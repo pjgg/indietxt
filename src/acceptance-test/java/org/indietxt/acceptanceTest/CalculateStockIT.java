@@ -1,8 +1,10 @@
 package org.indietxt.acceptanceTest;
 
 import java.io.File;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import org.indietxt.model.ProductSize;
 import org.indietxt.model.StockEntry;
@@ -54,7 +56,14 @@ public class CalculateStockIT {
 		File stockEntryCsv = new File(classLoader.getResource(expectedResultFileName).getFile());
 		List<StockEntry> expectedStockEntryResult = csvStockReader.read(stockEntryCsv, new StockEntry(0,0), StockEntry.class);
 
+		// expected stock amount
 		assertTrue("unexpected resultsize: " + expectedStockEntryResult.size(), result.size() == expectedStockEntryResult.size());
+
+		//expected stock ids
+		List<Integer> ids = expectedStockEntryResult.stream().map(StockEntry::getSizeId).collect(Collectors.toList());
+		assertTrue(result.stream().map(r -> r.getSizeId())
+				.collect(Collectors.toList()).containsAll(ids));
+
 	}
 
 }
