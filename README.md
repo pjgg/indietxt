@@ -18,13 +18,14 @@ On the other hand we encourage you to develop your own datasets. You could place
 1. [Test_definition](https://github.com/pjgg/indietxt/blob/master/src/acceptance-test/resources/features/ExerciseAcceptance.feature "Test definition")
 2. [mainAcceptanceClass](https://github.com/pjgg/indietxt/blob/master/src/acceptance-test/java/RunCukesTest.java "Main acceptance test class")
 3. [UnitTestFolder](https://github.com/pjgg/indietxt/blob/master/src/test/java/org/indietxt "Main unitTest folder")
-4. [serviceMainClass](https://github.com/pjgg/indietxt/blob/master/src/main/java/org/indietxt/service/impl/StockManagerReferenceImpl.java "Service main class")
-5. [StorageLayer](https://github.com/pjgg/indietxt/blob/master/src/main/java/org/indietxt/storage/AbstractDAO.java "Storage main class")
+4. [Microbenchmark](https://github.com/pjgg/indietxt/blob/master/src/microbenchmark/java/org/indietxt/performance/StockManagerPerformance.java "Performance Test")
+5. [serviceMainClass](https://github.com/pjgg/indietxt/blob/master/src/main/java/org/indietxt/service/impl/StockManagerReferenceImpl.java "Service main class")
+6. [StorageLayer](https://github.com/pjgg/indietxt/blob/master/src/main/java/org/indietxt/storage/AbstractDAO.java "Storage main class")
 
 
 ```
-
 .
+├── GetOneItemSize.png
 ├── README.md
 ├── logo.png
 ├── pom.xml
@@ -76,6 +77,13 @@ On the other hand we encourage you to develop your own datasets. You could place
 │   │                   ├── ProductSizePredicates.java
 │   │                   ├── StockEntryDAO.java
 │   │                   └── StockEntryPredicates.java
+│   ├── microbenchmark
+│   │   └── java
+│   │       └── org
+│   │           └── indietxt
+│   │               └── performance
+│   │                   ├── BenchmarkRunner.java
+│   │                   └── StockManagerPerformance.java
 │   └── test
 │       └── java
 │           └── org
@@ -87,6 +95,7 @@ On the other hand we encourage you to develop your own datasets. You could place
 │                       ├── ProductSizeDaoTest.java
 │                       └── StockEntryDaoTest.java
 └── suply-chain.iml
+
 ```
 
 
@@ -108,3 +117,19 @@ The goal is to provide us with a full understanding of your coding style and ski
 * design and domain modelling
 * quality of tests
 
+## Microbenchmark
+
+With just one item in stock and product storage, I request to retrieve the stock of each item(with equivalent logic - full exercise), and I got the following result.
+We run, 2 Rounds, 20 iterations each one.
+
+```
+Result "org.indietxt.performance.StockManagerPerformance.stockManagerTest":
+  0.560 ±(99.9%) 0.116 ms/op [Average]
+  (min, avg, max) = (0.318, 0.560, 0.737), stdev = 0.133
+  CI (99.9%): [0.444, 0.676] (assumes normal distribution)
+  ```
+  
+So, all executions with a 99.9% will be between 0.444 ms and 0.676 ms
+<img align="center" src="https://github.com/pjgg/indietxt/blob/master/GetOneItemSize.png">
+
+  
