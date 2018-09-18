@@ -5,9 +5,7 @@
 
 <img align="right" src="https://github.com/pjgg/indietxt/blob/master/logo.png">
 
-  Exiten tallas equivalentes, que son aquellas cuyo sistema de tallaje contienen los mismo números, aunque en distintas posiciones
-  Para las tallas equivalentes se debe seleccionar aquella que tenga un stock más elevando, descartando sus equivalencias
-  El objetivo es mostrar aquellas tallas de producto que poseen Stock.
+  There are equivalent sizes, which are those whose sizing system contains the same numbers, although in different positions. For the equivalent sizes one must select the one with the highest stock, discarding their equivalences. The objective is to show those product sizes that have Stock.
 
 
 ### Index 
